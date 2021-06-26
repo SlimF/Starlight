@@ -1,4 +1,6 @@
 before_install:
-   - sdk install java 16.0.1-adpt
-   - sdk use java 16.0.1-adpt
+  - source "$HOME/.sdkman/bin/sdkman-init.sh"
+  - sdk update
+  - sdk install java 16.0.1-adpt
+  - sdk use java 16.0.1-adpt
  
