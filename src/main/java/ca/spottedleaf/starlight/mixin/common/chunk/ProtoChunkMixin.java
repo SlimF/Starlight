@@ -9,7 +9,7 @@ import net.minecraft.world.level.chunk.ImposterProtoChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
 import net.minecraft.world.level.chunk.UpgradeData;
-import net.minecraft.world.level.levelgen.blending.GenerationUpgradeData;
+import net.minecraft.world.level.levelgen.blending.BlendingData;
 import net.minecraft.world.ticks.ProtoChunkTicks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,10 +24,10 @@ public abstract class ProtoChunkMixin implements ExtendedChunk {
      * TODO since this is a constructor inject, check for new constructors on update.
      */
     @Inject(
-            method = "<init>(Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/ticks/ProtoChunkTicks;Lnet/minecraft/world/ticks/ProtoChunkTicks;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/blending/GenerationUpgradeData;)V",
+            method = "<init>(Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/ticks/ProtoChunkTicks;Lnet/minecraft/world/ticks/ProtoChunkTicks;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V",
             at = @At("TAIL")
     )
-    public void onConstruct(ChunkPos chunkPos, UpgradeData upgradeData, LevelChunkSection[] levelChunkSections, ProtoChunkTicks protoChunkTicks, ProtoChunkTicks protoChunkTicks2, LevelHeightAccessor levelHeightAccessor, Registry registry, GenerationUpgradeData generationUpgradeData, CallbackInfo ci) {
+    public void onConstruct(ChunkPos chunkPos, UpgradeData upgradeData, LevelChunkSection[] levelChunkSections, ProtoChunkTicks protoChunkTicks, ProtoChunkTicks protoChunkTicks2, LevelHeightAccessor levelHeightAccessor, Registry registry, BlendingData blendingData, CallbackInfo ci) {
         if ((Object)this instanceof ImposterProtoChunk) {
             return;
         }

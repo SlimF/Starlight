@@ -9,7 +9,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.ProtoChunk;
 import net.minecraft.world.level.chunk.UpgradeData;
-import net.minecraft.world.level.levelgen.blending.GenerationUpgradeData;
+import net.minecraft.world.level.levelgen.blending.BlendingData;
 import net.minecraft.world.ticks.LevelChunkTicks;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -43,10 +43,10 @@ public abstract class LevelChunkMixin implements ExtendedChunk {
      * TODO since this is a constructor inject, check for new constructors on update.
      */
     @Inject(
-            method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/ticks/LevelChunkTicks;Lnet/minecraft/world/ticks/LevelChunkTicks;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/Consumer;Lnet/minecraft/world/level/levelgen/blending/GenerationUpgradeData;)V",
+            method = "<init>(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/ticks/LevelChunkTicks;Lnet/minecraft/world/ticks/LevelChunkTicks;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/Consumer;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V",
             at = @At("TAIL")
     )
-    public void onConstruct(Level level, ChunkPos chunkPos, UpgradeData upgradeData, LevelChunkTicks levelChunkTicks, LevelChunkTicks levelChunkTicks2, long l, LevelChunkSection[] levelChunkSections, Consumer consumer, GenerationUpgradeData generationUpgradeData, CallbackInfo ci) {
+    public void onConstruct(Level level, ChunkPos chunkPos, UpgradeData upgradeData, LevelChunkTicks levelChunkTicks, LevelChunkTicks levelChunkTicks2, long l, LevelChunkSection[] levelChunkSections, Consumer consumer, BlendingData blendingData, CallbackInfo ci) {
         this.setBlockNibbles(StarLightEngine.getFilledEmptyLight(level));
         this.setSkyNibbles(StarLightEngine.getFilledEmptyLight(level));
     }
