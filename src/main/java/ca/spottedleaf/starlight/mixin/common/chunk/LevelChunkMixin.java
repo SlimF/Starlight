@@ -30,8 +30,7 @@ public abstract class LevelChunkMixin implements ExtendedChunk {
             method = "<init>(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ProtoChunk;Lnet/minecraft/world/level/chunk/LevelChunk$PostLoadProcessor;)V",
             at = @At("TAIL")
     )
-    public void onTransitionToFull(final ServerLevel serverLevel, final ProtoChunk protoChunk,
-                                   @Nullable Consumer<LevelChunk> consumer, final CallbackInfo ci) {
+    public void onTransitionToFull(ServerLevel serverLevel, ProtoChunk protoChunk, LevelChunk.PostLoadProcessor postLoadProcessor, CallbackInfo ci) {
         this.setBlockNibbles(((ExtendedChunk)protoChunk).getBlockNibbles());
         this.setSkyNibbles(((ExtendedChunk)protoChunk).getSkyNibbles());
         this.setSkyEmptinessMap(((ExtendedChunk)protoChunk).getSkyEmptinessMap());
